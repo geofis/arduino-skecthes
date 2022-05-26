@@ -266,10 +266,10 @@ void setup() {
 #ifndef turnOffShield
   // Enable GPS
   counter = 0;
-  while (counter < 150 && !fona.enableGPS(true)) {
+  while (counter < 60 && !fona.enableGPS(true)) {
     Serial.println(F("Failed to turn on GPS, retrying..."));
     counter ++;
-    if (counter == 150) { // 150 loops equals 5 minutes
+    if (counter == 60) { // 60 loops equals 30 seconds
         fona.enableGPS(false);
         Serial.println(F("Tried to disable GPS while trying to turn on GPS"));
         delay(2000);
@@ -363,10 +363,10 @@ void loop() {
   // Use the top line if you want to parse UTC time data as well, the line below it if you don't care
   // while (!fona.getGPS(&latitude, &longitude, &speed_kph, &heading, &altitude, &year, &month, &day, &hour, &minute, &second)) {
   counter = 0;
-  while (counter < 150 && (!fona.enableGPS(true) || !fona.getGPS(&latitude, &longitude, &speed_kph, &heading, &altitude))) {
+  while (counter < 60 && (!fona.enableGPS(true) || !fona.getGPS(&latitude, &longitude, &speed_kph, &heading, &altitude))) {
     Serial.println(F("Failed to get GPS location, retrying..."));
     counter ++;
-    if (counter == 150) { // 150 loops equals 5 minutes
+    if (counter == 60) { // 60 loops equals 30 seconds
         fona.enableGPS(false);
         Serial.println(F("Tried to disable GPS while trying to get location"));
         delay(2000);
